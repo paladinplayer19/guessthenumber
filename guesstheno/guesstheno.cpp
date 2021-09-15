@@ -1,20 +1,61 @@
-// guesstheno.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
 
 #include <iostream>
+#include <time.h>
+#include <stdlib.h>
+
+char playGame();
 
 int main()
 {
-    std::cout << "Hello World!\n";
+	char answer;
+	
+	do {
+		answer = playGame();
+
+		 if (answer == 'N' || answer == 'n')
+		 {
+			return 0;
+		 }
+
+	} while(answer == 'Y' || answer == 'y');
 }
+char playGame() {
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
+	int guess = 0;
+	int count = 0;
+	int range = 10;
+	char restart;
 
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+	srand(time(NULL));
+	int numb = std::rand() % range;
+
+	  
+		do
+		{
+
+			std::cout << "Please enter your guess between 0 and 9!\n";
+			std::cin >> guess;
+			if (guess > numb)
+			{
+				std::cout << "Guess lower!\n";
+			}
+			else if (guess < numb)
+			{
+				std::cout << "Guess higher!\n";
+			}
+			else {
+				std::cout << "\n";
+				std::cout << "Well done you have guessed the correct number!";
+			}
+			count += 1;
+		} while (guess != numb);
+
+
+		std::cout << "\n";
+		std::cout << "You guessed the number " << count << " times\n";
+		std::cout << "\n";
+		std::cout << "Do you wish to play again? (Y/N)\n";
+		std::cin >> restart;
+	
+		return restart;
+}
