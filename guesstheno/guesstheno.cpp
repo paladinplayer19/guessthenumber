@@ -48,14 +48,27 @@ char playGame() {
 				std::cout << "Well done you have guessed the correct number!";
 			}
 			count += 1;
+
+			if (count == 5) {
+				
+				std::cout << "\n";
+				std::cout << "You werent able to guess the number after " << count << " times\n";
+				std::cout << "\n";
+				std::cout << "Do you wish to play again? (Y/N)\n";
+				std::cin >> restart;
+				return restart;
+			}
 		} while (guess != numb);
 
-
-		std::cout << "\n";
-		std::cout << "You guessed the number " << count << " times\n";
-		std::cout << "\n";
-		std::cout << "Do you wish to play again? (Y/N)\n";
-		std::cin >> restart;
+		if (guess == numb)
+		{
+			std::cout << "\n";
+			std::cout << "You guessed the number " << count << " times\n";
+			std::cout << "\n";
+			std::cout << "Do you wish to play again? (Y/N)\n";
+			std::cin >> restart;
+			return restart;
+		}
 	
-		return restart;
+		
 }
